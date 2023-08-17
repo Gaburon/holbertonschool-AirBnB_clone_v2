@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-A script that starts a Flask web application
-"""
+'''Flask WSGI for multiple routes'''
 
 from flask import Flask
 from sys import argv
