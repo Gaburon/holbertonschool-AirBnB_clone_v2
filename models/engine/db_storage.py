@@ -13,6 +13,7 @@ from models.review import Review
 from models.amenity import Amenity
 from models.place import Place
 
+
 class DBStorage:
   
   __engine = None
@@ -23,9 +24,8 @@ class DBStorage:
     pwd = os.environ.get('HBNB_MYSQL_PWD')
     host = os.environ.get('HBNB_MYSQL_HOST')
     db = os.environ.get('HBNB_MYSQL_DB')
-    self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
-                                .format(user, pwd, host, db), 
-                                pool_pre_ping=True)
+    self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(
+                                user, pwd, host, db), pool_pre_ping=True)
     if os.environ.get('HBNB_ENV') == 'test':
       Base.metadata.drop_all(bind=self.__engine)
 
@@ -71,5 +71,4 @@ class DBStorage:
   def close(self):
       """close session, proper ending"""
       self.__session.remove()
-
   
