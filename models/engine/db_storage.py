@@ -55,26 +55,21 @@ class DBStorage:
 
   def delete(self, obj=None):
     if obj != None:
-      self.__session,delete(obj)
+      self.__session.delete(obj)
 
   def reload(self):
-      ''' Creates all tables from DB '''
-      from models.base_model import BaseModel, Base
-      from models.user import User
-      from models.place import Place
-      from models.state import State
-      from models.city import City
-      from models.amenity import Amenity
-      from models.review import Review
-      from sqlalchemy.orm import sessionmaker, scoped_session
+      """
+      Commit all changes in database after
+      the changings
+      """
       Base.metadata.create_all(self.__engine)
-      session_factory = sessionmaker(bind=self.__engine,
-                                      expire_on_commit=False)
+      session_factory = sessionmaker(
+          bind=self.__engine, expire_on_commit=False)
       Session = scoped_session(session_factory)
-      self.__session = Session()
+      self.__session = Session
 
   def close(self):
-      '''Required to update HBNB using Flask'''
-      Session.close(self.__session)
+      """close session, proper ending"""
+      self.__session.remove()
 
   
