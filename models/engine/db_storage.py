@@ -15,7 +15,7 @@ from models.place import Place
 
 
 class DBStorage:
-  
+
   __engine = None
   __session = None
 
