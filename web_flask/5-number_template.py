@@ -39,10 +39,10 @@ def only_int(n):
     return "{} is a number".format(n)
 
 
-@app.route("/number_template/<int:n>", strict_slashes=False)
-def only_int_HTML(n):
-    '''Sixth function. Prints a HTML template'''
-    return render_template('5-number.html', n=n)
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template_n(n):
+    '''Route for /number_template/<n>'''
+    return render_template('5-number.html', number=n)
 
 
 if __name__ == "__main__":
